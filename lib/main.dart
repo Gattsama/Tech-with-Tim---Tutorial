@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Syds App',
       theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity),
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
       home: MyHomePage(),
     );
   }
@@ -44,10 +44,8 @@ class _MyHomePageState extends State<MyHomePage> {
             child: PostList(
                 posts), //Takes updated posts list and sends to PostList class
           ),
-          Expanded(
-            child: TextInput(
-              callBack: newPost,
-            ),
+          TextInput(
+            callBack: newPost,
           ),
         ],
       ),
@@ -88,6 +86,7 @@ class _TextInputState extends State<TextInput> {
             tooltip: 'Post Message',
             icon: Icon(Icons.send),
             onPressed: () {
+              FocusScope.of(context).unfocus();
               widget.callBack(_controller.text);
               _controller.clear();
             }),
@@ -132,7 +131,41 @@ class _PostListState extends State<PostList> {
     return ListView.builder(
         itemCount: widget.listItems.length,
         itemBuilder: (BuildContext context, int index) {
-          var post = widget.listItems[index]; //TODO video 6
+          var post = widget.listItems[index];
+          return Card(
+            child: Row(
+              children: [
+                Expanded(
+                  child: ListTile(
+                    title: Text(post.body),
+                    subtitle: Text(post.author),
+                  ),
+                ),
+                Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                      child: Text(
+                        post.likesCounter.toString(),
+                        style: TextStyle(fontSize: 20.0),
+                      ),
+                    ),
+                    IconButton(
+                        icon: Icon(
+                          Icons.thumb_up,
+                          color:
+                              post.userLiked ? Colors.redAccent : Colors.black,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            post.likePost();
+                          });
+                        })
+                  ],
+                )
+              ],
+            ),
+          );
         });
   }
 }
