@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "318527456557",
+    "project_id": "twt-turotial",
+    "storage_bucket": "twt-turotial.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:318527456557:android:0207c0eb143a25b3c3ffa4",
+        "android_client_info": {
+          "package_name": "com.conjuringmidas.tech_with_tim_tutorial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "318527456557-b3fss9dqhih2okdfn24jv3803bakhnm6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ-tdX8361cXe8cnF02JzcR8IRzeMKrFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "318527456557-b3fss9dqhih2okdfn24jv3803bakhnm6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

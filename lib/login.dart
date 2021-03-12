@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tech_with_tim_tutorial/my_home_page.dart';
+import 'auth.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -19,14 +21,31 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  User user;
+
+  // OLD CODE FOR TEXTFIELD DATA VARIABLE
   String loginName;
-  TextEditingController _controller = TextEditingController();
+  // TextEditingController _controller = TextEditingController();
 
   void click() {
-    loginName = _controller.text;
+    SignInMethods().singInWithGoogle().then((user) {
+      print('LOOK HERE');
+      print(user.user.displayName);
+      // Navigator.push(context,
+      // MaterialPageRoute(builder: (context) => MyHomePage(user.toString()) ));
+    });
+
     Navigator.push(context,
-        MaterialPageRoute(builder: (context) => MyHomePage(loginName)));
+        MaterialPageRoute(builder: (context) => MyHomePage(user.displayName)));
   }
+
+  // Widget googleLoginButton() {
+  //   return OutlinedButton(
+  //       onPressed: () {
+  //         click();
+  //       },
+  //       child: child);
+  // }
 
   @override
   Widget build(BuildContext context) {
